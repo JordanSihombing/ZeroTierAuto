@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # API Token
-API_TOKEN="pHeu4iyxaLTivxSm8oB7hI1hSaPK7zX2"
+API_TOKEN="x3WCnpQ9DYjVGaeElv8C3XpKYS8M4O4y"
 
 # API Endpoint URL
 API_URL="https://api.zerotier.com/api/v1/network"
