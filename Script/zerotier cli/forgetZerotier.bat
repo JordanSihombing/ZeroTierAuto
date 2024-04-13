@@ -27,7 +27,7 @@ if '%errorlevel%' NEQ '0' (
 echo Terminating ZeroTier connection...
 
 :: Function to send request to API and extract ID from response
-:: Define your API endpoint URL (replace with your actual URL)
+:: Define API endpoint URL
 set TARGET=http://IP_FOR_API/getid
 
 :: Execute GET request with PowerShell and capture response
