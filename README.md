@@ -11,7 +11,7 @@ Executing ZeroTier command/function using script
 |----------|----------|----------|
 | createNew.sh   | Create a new network and POST the network ID to API | Check the IP for API and API token  |
 | connect.sh   | GET the existing network ID and connect to the network   | Check the IP for API and API token   |
-| editNet.sh   | GET the existing network ID and set the network to "Public"   | Check the IP for API and API token   |
+| editNet.sh   | GET the existing network ID and set the network to "Public"   | - Check the IP for API and API token <br> - Modify the default network configuration if needed |
 | deleteNet.sh   | GET the existing network ID and delete the network  | Check the IP for API and API token   |
 | sendPIN.sh   | Initiate a textbox to recieve PIN from user and send the PIN to Sunshine   |    |
 | textbox.py   | Create a new textbox used in sendPIN.sh   |    |
@@ -32,9 +32,11 @@ Executing ZeroTier command/function using script
 
 ### Establish Connection
 `createNew.sh` → `editNet.sh` → `startCall.bat` or `connect.sh` → `sendPIN.sh`
+>[!NOTE]
 > Preferably using `startCall.bat` because ZeroTier API to connect is underdeveloped
 
 
 ### Terminate Connection
 `deleteNet.sh` or `forgetZerotier.bat`
+>[!NOTE]
 > Preferably using `deleteNet.sh` because it doesn't require the user to start zerotier_desktop_ui.exe
