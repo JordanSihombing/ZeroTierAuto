@@ -45,10 +45,10 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and command/function using script
 ## Main Flow of Process
 
 ### Using Controller
-`clientStart.ps1`  → trigger on client if there is new session request
-`clientEnd.ps1`    → trigger on client if there is end session request
-`vmStart.ps1`      → trigger on VM if there is new session request
-`vmEnd.ps1`        → trigger on VM if there is end session request
+`clientStart.ps1`  → trigger on client if there is new session request <br />
+`clientEnd.ps1`    → trigger on client if there is end session request <br />
+`vmStart.ps1`      → trigger on VM if there is new session request <br />
+`vmEnd.ps1`        → trigger on VM if there is end session request <br />
 
 >[!NOTE]
 > API is not deployed yet
