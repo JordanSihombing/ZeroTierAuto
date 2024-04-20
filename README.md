@@ -5,38 +5,53 @@ Executing ZeroTier command/function using script
 
 ## Description
 
-### Zerotier API script
+### Client-side
 
 | Name | Usage | Note |
 |----------|----------|----------|
-| createNew.sh   | Create a new network and POST the network ID to API | Check the IP for API and API token  |
-| connect.sh   | GET the existing network ID and connect to the network   | Check the IP for API and API token   |
-| editNet.sh   | GET the existing network ID and set the network to "Public"   | - Check the IP for API and API token <br> - Modify the default network configuration if needed |
-| deleteNet.sh   | GET the existing network ID and delete the network  | Check the IP for API and API token   |
-| sendPIN.sh   | Initiate a textbox to recieve PIN from user and send the PIN to Sunshine   |    |
-| textbox.py   | Create a new textbox used in sendPIN.sh   |    |
+| connectClient.ps1   | .\client\connectClient.ps1 -network_id "_network id_" | network_id as passing parameter  |
+| disconnectClient.ps1    | .\client\disconnectClient.ps1 -network_id "_network id_"  | network_id as passing parameter   |
+| pairSunshine.ps1   | .\client\pairSunhine.ps1 -session_id "_session_id_"   | session_id as passing parameter |
+| runMoonlight.ps1  | .\client\runMoonlight.ps1   |    |
 
-
-### Zerotier CLI script
+### VM-side
 
 | Name | Usage | Note |
 |----------|----------|----------|
-| runZeroTier.bat  | - Get administrator permission to run ZeroTier CLI <br> - Find zerotier_desktop_ui.exe in the machine <br>- GET the existing network ID and connect to the network    | Check the IP for API   |
-| runMoonlight.bat   | Find Moonlight.exe in the machine and start Moonlight  |    |
-| forgetZerotier.bat   | - Get administrator permission to run ZeroTier CLI <br> - Find zerotier_desktop_ui.exe in the machine <br>- GET the existing network ID and delete/leave the network   | Check the IP for API   |
-| startCall.bat   | Execute runZeroTier.bat and runMoonlight.bat   |    |
+| connectVM.ps1  |.\vm\connectVM.ps1 | Check the IP for API   |
+| createNew.ps1   | .\vm\createNew.ps1  |    |
+| deleteNet.ps1   | .\vm\deleteNet.ps1 -session_id "_session_id_"  | session_id as passing parameter |
+| disconnectVM.ps1   | .\vm\disconnectVM.ps1  |    |
+| editNet.ps1   | .\vm\editNet.ps1  | Check the IP for API   |
+| runSunshine.ps1   | .\vm\runSunshine.ps1 -pin "_pin_"   | pin as passing parameter    |
 
+### Warp
 
+| Name | Usage | Note |
+|----------|----------|----------|
+| counterEduroam.ps1   | .\warp\counterEduroam.ps1 | to check wheter the network is available for ZeroTier  |
+| warpConnect.ps1    | .\warp\warpConnect.ps1  |    |
+| warpDisconnect.ps1   | .\warp\warpDisconnect.ps1 |  |
+
+### Controller
+
+| Name | Usage | Note |
+|----------|----------|----------|
+| clientEnd.ps1   |.\controller\clientEnd.ps1 -network_id "_network id_"  | network_id as passing parameter  |
+| clientStart.ps1    | .\controller\clientStart.ps1 -network_id "_network id_" -session_id "_session_id_"   | network_id and session_id as passing parameter   |
+| vmEnd.ps1   | .\controller\vmEnd.ps1 -session_id "_session_id_"   | session_id as passing parameter |
+| vmStart.ps1  | .\controller\vmStart.ps1 -pin "_pin_"  | pin as passing parameter   |
 
 ## Main Flow of Process
 
-### Establish Connection
-`createNew.sh` → `editNet.sh` → `startCall.bat` or `connect.sh` → `sendPIN.sh`
->[!NOTE]
-> Preferably using `startCall.bat` because ZeroTier API to connect is underdeveloped
+### Using Controller
+`clientStart.ps1`  → trigger on client if there is new session request
+`clientEnd.ps1`    → trigger on client if there is end session request
+`vmStart.ps1`      → trigger on VM if there is new session request
+`vmEnd.ps1`        → trigger on VM if there is end session request
 
-
-### Terminate Connection
-`deleteNet.sh` or `forgetZerotier.bat`
 >[!NOTE]
-> Preferably using `deleteNet.sh` because it doesn't require the user to start zerotier_desktop_ui.exe
+> API is not deployed yet
+> session_is is still a passing parameter
+> recieving PIN is still a passing parameter
+> recieving PIN automatically in VM is not yet implemented
