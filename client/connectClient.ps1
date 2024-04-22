@@ -1,5 +1,3 @@
-# PowerShell equivalent of the provided batch script
-
 # Check for admin privileges
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     # Restarting script with admin privileges

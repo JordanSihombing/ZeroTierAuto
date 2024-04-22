@@ -1,6 +1,4 @@
-param (
-    [string]$session_id
-)
+$session_id = $env:COMPUTERNAME
 
 # Target URL
 $TARGET = "http://34.101.181.190:3000/v1/session/${session_id}/connection/start"

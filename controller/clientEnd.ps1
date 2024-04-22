@@ -1,5 +1,5 @@
 param (
-    [string]$network_id,
+    [string]$network_id
 )
 
 

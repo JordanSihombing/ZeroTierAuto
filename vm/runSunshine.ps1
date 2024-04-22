@@ -29,10 +29,17 @@ Start-Sleep -Seconds 5
 $url = "https://localhost:47990"
 Start-Process $url
 
-# Define parameters in the script
-param (
-    [string]$pin
-)
+# Define the URL of the Flask API endpoint
+$apiUrl = 'http://127.0.0.1:2020/getpin'
+
+# Make a GET request to the API endpoint
+$response = Invoke-RestMethod -Uri $apiUrl -Method Get
+
+# Extract the PIN from the response
+$pin = $response.pin
+
+# Output the extracted PIN
+Write-Host "PIN: $pin"
 
 # Check if PIN is provided
 if (-not $pin) {
