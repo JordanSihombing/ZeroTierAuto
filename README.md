@@ -18,11 +18,11 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and command/function using script
 
 | Name | Usage | Note |
 |----------|----------|----------|
-| connectVM.ps1  |.\vm\connectVM.ps1 | Check the IP for API   |
+| connectVM.ps1  |.\vm\connectVM.ps1 |    |
 | createNew.ps1   | .\vm\createNew.ps1  |    |
 | deleteNet.ps1   | .\vm\deleteNet.ps1 -session_id "_session_id_"  | session_id as passing parameter |
 | disconnectVM.ps1   | .\vm\disconnectVM.ps1  |    |
-| editNet.ps1   | .\vm\editNet.ps1  | Check the IP for API   |
+| editNet.ps1   | .\vm\editNet.ps1  |  |
 | runSunshine.ps1   | .\vm\runSunshine.ps1 -pin "_pin_"   | pin as passing parameter    |
 
 ### Warp
