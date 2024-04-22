@@ -12,9 +12,6 @@ param (
 
 # Check if extracted PIN is not empty
 if ($pin -ne "") {
-    # Set the session ID (replace {session_id} with the actual session ID)
-    $session_id = "your_session_id_here"
-
     # Set the URL
     $URL = "http://34.101.181.190:3000/v1/session/$session_id/pair"
 
