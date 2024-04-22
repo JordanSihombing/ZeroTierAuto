@@ -51,7 +51,7 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and command/function using script
 `vmEnd.ps1`        → trigger on VM if there is end session request <br />
 
 >[!NOTE]
-> API is not deployed yet
-> session_is is still a passing parameter
-> recieving PIN is still a passing parameter
-> recieving PIN automatically in VM is not yet implemented
+> API is not deployed yet <br />
+> session_is is still a passing parameter <br />
+> recieving PIN is still a passing parameter <br />
+> recieving PIN automatically in VM is not yet implemented <br />
