@@ -24,6 +24,8 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and command/function using script
 | disconnectVM.ps1   | .\vm\disconnectVM.ps1  |    |
 | editNet.ps1   | .\vm\editNet.ps1  |  |
 | runSunshine.ps1   | .\vm\runSunshine.ps1 -pin "_pin_"   | pin as passing parameter    |
+| runApp.ps1   | .\vm\runApp.ps1  |  |
+| stopApp.ps1   | .\vm\runApp.ps1   |   |
 
 ### Warp
 
@@ -39,8 +41,8 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and command/function using script
 |----------|----------|----------|
 | clientEnd.ps1   |.\controller\clientEnd.ps1 -network_id "_network id_"  | network_id as passing parameter  |
 | clientStart.ps1    | .\controller\clientStart.ps1 -network_id "_network id_" -session_id "_session_id_"   | network_id and session_id as passing parameter   |
-| vmEnd.ps1   | .\controller\vmEnd.ps1 -session_id "_session_id_"   | session_id as passing parameter |
-| vmStart.ps1  | .\controller\vmStart.ps1 -pin "_pin_"  | pin as passing parameter   |
+| vmEnd.ps1   | .\controller\vmEnd.ps1  | session_id as passing parameter |
+| vmStart.ps1  | .\controller\vmStart.ps1  |    |
 
 ## Main Flow of Process
 
