@@ -30,7 +30,7 @@ param (
 )
 
 #----------------------------------------------------------------------
-$TARGET = "http://34.101.181.190:3000/v1/session/${session_id}/connection/start"
+$TARGET = "http://10.11.1.169:3000/v1/session/${session_id}/connection/start"
 
 # Construct ID_BODY with network_id
 $BODY = @{

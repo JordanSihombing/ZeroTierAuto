@@ -14,7 +14,7 @@ param (
 if ($pin -ne "") {
 
     # Set the URL
-    $URL = "http://34.101.181.190:3000/v1/session/$session_id/pair"
+    $URL = "http://10.11.1.169:3000/v1/session/$session_id/pair"
 
     # Create JSON body with PIN value
     $body = @{
