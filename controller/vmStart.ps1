@@ -1,4 +1,4 @@
-.\vm\runApp.ps1 #start API
+& "API\dist\app.exe" #start API
 .\vm\createNew.ps1 #Create new network
 .\warp\counterEduroam.ps1 #Check if network is restricted 
 Start-Sleep -Seconds 5
