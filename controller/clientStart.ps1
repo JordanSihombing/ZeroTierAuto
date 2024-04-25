@@ -3,7 +3,7 @@ param (
     [string]$session_id
 )
 
-$retryCount = 3  # Number of times to retry each script
+$maxRetry = 3  # Number of times to retry each script
 
 function RunScript {
     param(
@@ -11,7 +11,7 @@ function RunScript {
     )
 
     $retry = 0
-    while ($retry -lt $retryCount) {
+    while ($retry -lt $maxRetry) {
         $retry++
         Write-Host "Attempting to run $scriptPath. Retry: $retry"
 
