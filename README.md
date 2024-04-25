@@ -53,5 +53,4 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and command/function using script
 `vmEnd.ps1`        → trigger on VM if there is end session request <br />
 
 >[!NOTE]
-> API is not deployed yet <br />
 > session_id and network_id is a passing parameter on client <br />
