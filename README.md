@@ -54,6 +54,4 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and command/function using script
 
 >[!NOTE]
 > API is not deployed yet <br />
-> session_is is still a passing parameter <br />
-> recieving PIN is still a passing parameter <br />
-> recieving PIN automatically in VM is not yet implemented <br />
+> session_id and network_id is a passing parameter on client <br />
