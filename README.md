@@ -1,7 +1,7 @@
 # ZeroTier Configuration Automation
 
 ## Usage
-Executing ZeroTier, Sunshine, Cloudflare WARP, and command/function using script
+Executing ZeroTier, Sunshine, Cloudflare WARP, and commands/functions using script
 
 ## Description
 
