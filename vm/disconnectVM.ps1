@@ -1,11 +1,11 @@
 # PowerShell equivalent of the provided batch script
 
 # Check for admin privileges
-if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    # Restarting script with admin privileges
-    Start-Process powershell -Verb RunAs -ArgumentList ("-File", "$($MyInvocation.MyCommand.Path)")
-    exit
-}
+# if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+#     # Restarting script with admin privileges
+#     Start-Process powershell -Verb RunAs -ArgumentList ("-File", "$($MyInvocation.MyCommand.Path)")
+#     exit
+# }
 
 # Terminating ZeroTier connection
 Write-Host "Terminating ZeroTier connection..."
