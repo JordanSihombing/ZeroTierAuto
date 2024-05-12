@@ -23,14 +23,14 @@ foreach ($path in $ZerotierExePaths) {
 }
 
 if ($ZerotierExe -eq "") {
-    Write-Host "ZeroTier Desktop UI not found."
+    Show-Notification -message "ZeroTier Desktop UI not found."
     exit
 }
 
 # Initiating ZeroTier and connecting to the network
 $network_id = $args[0]
 if (-not $network_id) {
-    Write-Host "No network ID specified."
+    Show-Notification -message "No network ID specified."
     exit
 }
 
@@ -45,7 +45,7 @@ zerotier-cli join $network_id
 Start-Sleep -Seconds 3
 zerotier-cli status
 
-Write-Host "ZeroTier connection established!"
+Show-Notification -message "ZeroTier connection established!"
 
 # Closing ZeroTier Desktop UI
 Get-Process -Name zerotier_desktop_ui | Stop-Process -Force

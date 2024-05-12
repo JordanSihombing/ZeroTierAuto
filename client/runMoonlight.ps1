@@ -15,7 +15,7 @@ foreach ($path in $MoonlightExePaths) {
 }
 
 if ($MoonlightExe -eq "") {
-    Write-Host "Moonlight is not installed."
+    Show-Notification -message "Moonlight is not installed."
     exit
 }
 

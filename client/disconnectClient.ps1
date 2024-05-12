@@ -31,7 +31,7 @@ if (-not $ZerotierExe) {
 
 $network_id = $args[0]
 if (-not $network_id) {
-    Write-Host "No network ID specified."
+    Show-Notification -message "No network ID specified."
     exit
 }
 
@@ -41,7 +41,7 @@ Start-Sleep -Seconds 5
 zerotier-cli leave $network_id
 Start-Sleep -Seconds 3
 zerotier-cli status
-Write-Host "ZeroTier connection terminated!"
+Show-Notification -message "ZeroTier connection terminated!"
 
 # Closing ZeroTier Desktop UI
 Get-Process -Name zerotier_desktop_ui | Stop-Process -Force
