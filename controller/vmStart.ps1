@@ -11,7 +11,7 @@ Remove-Item -Path "$zerotierDir\identity.public" -Force
 Remove-Item -Path "$zerotierDir\identity.secret" -Force
 
 # Start the ZeroTier service
-Start-Service -Name ZeroTierService
+Start-Service -Name ZeroTierOneService
 
 .\vm\createNew.ps1 #Create new network
 .\warp\counterEduroam.ps1 #Check if network is restricted 
