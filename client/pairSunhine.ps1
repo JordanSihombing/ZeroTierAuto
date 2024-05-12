@@ -1,5 +1,5 @@
-# Execute textbox.py and capture PIN value
-$pin = python textbox.py
+# Execute textbox.exe and capture PIN value
+$pin = & "textbox.exe"
 
 # Extract only numbers using regular expressions
 $pin = $pin -replace '[^\d]', ''
@@ -24,5 +24,5 @@ if ($pin -ne "") {
     # Send API POST request with PIN value
     Invoke-RestMethod -Method Post -Uri $URL -ContentType "application/json" -Body $body
 } else {
-    Write-Host "Error: No PIN value provided."
+    Show-Notification -message "Error: No PIN value provided."
 }
