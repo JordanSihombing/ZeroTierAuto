@@ -25,11 +25,13 @@ $network_id > $outputFile
 # Get VM IP address
 $IP_VM = (Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias (Get-NetAdapter | Where-Object {$_.Status -eq "Up"}).Name).IPAddress
 
-# param (
-#     [string]$session_id
-# )
+$apiUrl = "http://10.147.20.105/v1/checkSID?ip=$($VM_IP):6969"
 
-# $session_id = $IP_VM
+# Send API request
+$response = Invoke-RestMethod -Method Get -Uri $apiUrl
+
+# Extract SID from response
+$session_id = $response.details.SID
 
 #----------------------------------------------------------------------
 $TARGET = "http://10.11.1.169:3000/v1/session/${session_id}/connection/start"
