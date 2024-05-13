@@ -11,13 +11,22 @@ if ($network_id) {
   Write-Error "Error: Could not read network ID from network_id.txt"
 }
 
+# Read the session ID from session_id.txt
+$session_id_file = "session_id.txt"
+$session_id = Get-Content $session_id_file
+
+# Check if the session ID was read successfully (optional)
+if (-not $session_id) {
+  Write-Error "Error: Could not read session ID from session_id.txt"
+}
+
 # API Token
 $API_TOKEN = "x3WCnpQ9DYjVGaeElv8C3XpKYS8M4O4y"
 
 # API Endpoint URL
 $API_URL = "https://my.zerotier.com/api/network/${network_id}"
 
-# New request body JSON
+# New request body JSON with name from session_id.txt
 $REQUEST_BODY = @{
     config = @{
         capabilities = @{}
@@ -34,7 +43,7 @@ $REQUEST_BODY = @{
         )
         mtu = 2800
         multicastLimit = 32
-        name = "Cloud Gaming Network"
+        name = $session_id  # Assigning session_id as name
         private = $false
         routes = @(
             @{

@@ -19,8 +19,8 @@ $response = Invoke-RestMethod -Method Post `
 # Extract the ID from the response
 $network_id = $response.id
 
-$outputFile = "network_id.txt"
-$network_id > $outputFile
+$netFile = "network_id.txt"
+$network_id > $netFile
 #----------------------------------------------------------------------
 # Get VM IP address
 $IP_VM = (Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias (Get-NetAdapter | Where-Object {$_.Status -eq "Up"}).Name).IPAddress
@@ -32,6 +32,9 @@ $response = Invoke-RestMethod -Method Get -Uri $apiUrl
 
 # Extract SID from response
 $session_id = $response.details.SID
+
+$sesFile = "session_id.txt"
+$session_id > $sesFile
 
 #----------------------------------------------------------------------
 $TARGET = "http://10.11.1.169:3000/v1/session/${session_id}/connection/start"
