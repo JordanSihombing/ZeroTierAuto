@@ -1,7 +1,7 @@
 Start-Process -FilePath "API\dist\app.exe" -WindowStyle Hidden #start API
 
 # Stop the ZeroTier service
-Stop-Service -Name ZeroTierService
+Stop-Service -Name ZeroTierOneService
 
 # Define the path to ZeroTier's working directory
 $zerotierDir = "C:\ProgramData\ZeroTier\One"
