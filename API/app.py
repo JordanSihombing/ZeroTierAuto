@@ -45,4 +45,4 @@ def handle_post_pin_request():
         return {'status': 'error', 'message': 'PIN not provided'}, 400
 
 if __name__ == '__main__':
-    app.run(debug=True, port=2020)
+    app.run(debug=True, port=2000)
