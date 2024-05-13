@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, subprocess
 
 app = Flask(__name__)
 
@@ -35,8 +35,12 @@ def handle_post_id_request():
 def handle_post_pin_request():
     pin = request.json.get('pin')
     if pin is not None:
-        received_pin.append(pin)
-        return {'status': 'success'}, 200
+        # Run runSunshine.ps1 with the provided PIN
+        try:
+            subprocess.Popen(["powershell.exe", "runSunshine.ps1", "-pin", str(pin)])
+            return {'status': 'success'}, 200
+        except Exception as e:
+            return {'status': 'error', 'message': str(e)}, 500
     else:
         return {'status': 'error', 'message': 'PIN not provided'}, 400
 

@@ -34,6 +34,7 @@ missing module named multiprocessing.TimeoutError - imported by multiprocessing 
 missing module named multiprocessing.set_start_method - imported by multiprocessing (top-level), multiprocessing.spawn (top-level)
 missing module named multiprocessing.get_start_method - imported by multiprocessing (top-level), multiprocessing.spawn (top-level)
 missing module named pyimod02_importers - imported by C:\Users\Jordan\AppData\Local\Programs\Python\Python38-32\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgutil.py (delayed)
+missing module named flask.subprocess - imported by flask (top-level), C:\Users\Jordan\OneDrive\Documents\Kuliah Smt 8\TA 2\update\ZeroTierAuto\API\app.py (top-level)
 missing module named 'watchdog.events' - imported by werkzeug._reloader (delayed)
 missing module named watchdog - imported by werkzeug._reloader (delayed)
 missing module named vms_lib - imported by platform (delayed, conditional, optional)

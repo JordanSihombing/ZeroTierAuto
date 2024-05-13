@@ -19,6 +19,10 @@ if (-not $SunshineExe) {
 
 Write-Host "Sunshine is installed."
 
+param (
+    [string]$pin
+)
+
 # Start Sunshine
 Start-Process -FilePath $SunshineExe
 
@@ -28,24 +32,6 @@ Start-Sleep -Seconds 5
 # Open URL in default browser
 $url = "https://localhost:47990"
 Start-Process $url
-
-# Define the URL of the Flask API endpoint
-$apiUrl = 'http://127.0.0.1:2020/getpin'
-
-# Make a GET request to the API endpoint
-$response = Invoke-RestMethod -Uri $apiUrl -Method Get
-
-# Extract the PIN from the response
-$pin = $response.pin
-
-# Output the extracted PIN
-Write-Host "PIN: $pin"
-
-# Check if PIN is provided
-if (-not $pin) {
-    Write-Host "No PIN specified."
-    exit 1
-}
 
 # Define API endpoint URL
 $apiUrl = "https://localhost:47990/api/pin"
