@@ -1,10 +1,27 @@
-from flask import Flask, request, jsonify, subprocess
+from flask import Flask, request, jsonify, json
+import requests
 
 app = Flask(__name__)
 
 # Initialize an empty list to store the received ID numbers
 received_pin = []
 received_id = []
+
+def pairSunshine(pin):
+    # Define API endpoint URL
+    api_url = "https://localhost:47990/api/pin"
+
+    # Define request body JSON
+    request_body = json.dumps({'pin': pin}) 
+
+    print(request_body)
+
+    # Send HTTP POST request
+    response = requests.post(api_url, data=request_body, verify=False)
+
+    # Output response
+    return response
+
 
 @app.route('/getid', methods=['GET'])
 def handle_get_id_request():
@@ -35,14 +52,16 @@ def handle_post_id_request():
 def handle_post_pin_request():
     pin = request.json.get('pin')
     if pin is not None:
-        # Run runSunshine.ps1 with the provided PIN
         try:
-            subprocess.Popen(["powershell.exe", "runSunshine.ps1", "-pin", str(pin)])
-            return {'status': 'success'}, 200
+            response = pairSunshine(pin)
+            if response.status_code == 200:
+                return {'status': 'success'}, 200
+            else:
+                return {'status': 'error', 'message': 'PIN not valid'}, 400
         except Exception as e:
             return {'status': 'error', 'message': str(e)}, 500
     else:
         return {'status': 'error', 'message': 'PIN not provided'}, 400
 
 if __name__ == '__main__':
-    app.run(debug=True, port=2000)
+    app.run(host="0.0.0.0", port=2000)
