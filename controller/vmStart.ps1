@@ -1,7 +1,7 @@
 Start-Process -FilePath "API\dist\app.exe" -WindowStyle Hidden #start API
 
 # Stop the ZeroTier service
-Stop-Service -Name ZeroTierService
+Stop-Service -Name ZeroTierOneService
 
 # Define the path to ZeroTier's working directory
 $zerotierDir = "C:\ProgramData\ZeroTier\One"
@@ -11,7 +11,7 @@ Remove-Item -Path "$zerotierDir\identity.public" -Force
 Remove-Item -Path "$zerotierDir\identity.secret" -Force
 
 # Start the ZeroTier service
-Start-Service -Name ZeroTierService
+Start-Service -Name ZeroTierOneService
 
 .\vm\createNew.ps1 #Create new network
 .\warp\counterEduroam.ps1 #Check if network is restricted 
