@@ -1,5 +1,4 @@
-# PowerShell equivalent of the provided batch script
-
+. .\notification.ps1
 # Check for Moonlight installation
 $MoonlightExe = ""
 $MoonlightExePaths = @(
@@ -15,7 +14,7 @@ foreach ($path in $MoonlightExePaths) {
 }
 
 if ($MoonlightExe -eq "") {
-    Write-Host "Moonlight is not installed."
+    Show-Notification -message "Moonlight is not installed."
     exit
 }
 

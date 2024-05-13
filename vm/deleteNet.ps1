@@ -1,7 +1,7 @@
 $VM_IP = (Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias (Get-NetAdapter | Where-Object {$_.Status -eq "Up"}).Name).IPAddress
 
 # API endpoint
-$apiUrl = "http://10.147.20.105/v1/checkSID?ip=$($VM_IP):6969"
+$apiUrl = "http://10.11.1.181/v1/checkSID?ip=$($VM_IP):6969"
 
 # Send API request
 $response = Invoke-RestMethod -Method Get -Uri $apiUrl
