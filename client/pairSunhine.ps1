@@ -6,6 +6,7 @@ $pin = $pin -replace '[^\d]', ''
 
 Write-Output "User input (PIN): $pin"
 
+. .\notification.ps1
 param (
     [string]$session_id
 )

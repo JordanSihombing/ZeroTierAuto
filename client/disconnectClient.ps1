@@ -10,7 +10,7 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 # Terminating ZeroTier connection
 Write-Host "Terminating ZeroTier connection..."
 
-
+. .\notification.ps1
 # Check for ZeroTier Desktop UI executable
 $ZerotierExePaths = @(
     "${env:ProgramFiles}\ZeroTier\One\zerotier_desktop_ui.exe",

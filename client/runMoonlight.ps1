@@ -1,5 +1,4 @@
-# PowerShell equivalent of the provided batch script
-
+. .\notification.ps1
 # Check for Moonlight installation
 $MoonlightExe = ""
 $MoonlightExePaths = @(

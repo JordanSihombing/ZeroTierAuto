@@ -5,6 +5,8 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
     exit
 }
 
+. .\notification.ps1
+
 # Initiating ZeroTier connection
 Write-Host "Initiating ZeroTier connection..."
 
