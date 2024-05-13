@@ -81,8 +81,8 @@ $REQUEST_BODY = @{
     tagsByName = @{}
 } | ConvertTo-Json
 
-# Send HTTP PATCH Request to update the network
-Invoke-RestMethod -Method Patch -Uri $API_URL `
+# Send HTTP Post Request to update the network
+Invoke-RestMethod -Method Post -Uri $API_URL `
     -Headers @{
         "Content-Type" = "application/json"
         "Authorization" = "Bearer $API_TOKEN"
