@@ -25,7 +25,7 @@ else
    $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
 
    # Specify the current script path and name as a parameter with arguments
-   $newProcess.Arguments = "& '" + $script:MyInvocation.MyCommand.Path + "' -name " + $name;
+   $newProcess.Arguments = "& '" + $script:MyInvocation.MyCommand.Path + "' -network_id " + $network_id;
 
    # Indicate that the process should be elevated
    $newProcess.Verb = "runas";
@@ -38,7 +38,7 @@ else
 }
 
 ## Initiating ZeroTier connection
-Write-Output "Initiating ZeroTier connection..."
+Write-Output "Initiating ZeroTier connection..." 
 
 # Check for ZeroTier Desktop UI executable
 $ZerotierExe = ""
@@ -68,10 +68,13 @@ Start-Process -FilePath $ZerotierExe
 # Waiting for ZeroTier to start
 Start-Sleep -Seconds 3
 
+Write-Host $network_id
+
 # Joining the network
 zerotier-cli join $network_id
 Start-Sleep -Seconds 3
 zerotier-cli status
 
+Pause
 # Closing ZeroTier Desktop UI
-Get-Process -Name zerotier_desktop_ui | Stop-Process -Force
+# Get-Process -Name zerotier_desktop_ui | Stop-Process -Force
