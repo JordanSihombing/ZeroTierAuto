@@ -1,3 +1,5 @@
+Start-Sleep -Seconds 17
+
 Start-Process -FilePath "API\dist\app.exe" -WindowStyle Hidden #start API
 
 # Stop the ZeroTier service
@@ -12,8 +14,6 @@ Remove-Item -Path "$zerotierDir\identity.secret" -Force
 
 # Start the ZeroTier service
 Start-Service -Name ZeroTierOneService
-
-Start-Sleep -Seconds 10
 
 .\vm\createNew.ps1 #Create new network
 .\warp\counterEduroam.ps1 #Check if network is restricted 
