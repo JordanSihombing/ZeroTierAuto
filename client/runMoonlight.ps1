@@ -1,4 +1,3 @@
-. .\notification.ps1
 # Check for Moonlight installation
 $MoonlightExe = ""
 $MoonlightExePaths = @(
@@ -14,7 +13,7 @@ foreach ($path in $MoonlightExePaths) {
 }
 
 if ($MoonlightExe -eq "") {
-    Show-Notification -message "Moonlight is not installed."
+    #Show-Notification -message "Moonlight is not installed."
     exit
 }
 

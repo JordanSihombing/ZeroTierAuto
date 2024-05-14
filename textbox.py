@@ -2,8 +2,11 @@ import tkinter as tk
 
 def get_input():
     user_input = entry.get()
-    print("User input:", user_input)
+    print(user_input)
+    with open('pinSun.txt', 'w') as file:
+        file.write(user_input)
     root.destroy()  # Close the window after getting input
+    
 
 # Create the main window
 root = tk.Tk()

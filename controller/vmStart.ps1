@@ -1,5 +1,3 @@
-Start-Sleep -Seconds 17
-
 Start-Process -FilePath "API\dist\app.exe" -WindowStyle Hidden #start API
 
 # Stop the ZeroTier service

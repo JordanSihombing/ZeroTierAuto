@@ -43,6 +43,15 @@ $session_id > $sesFile
 #----------------------------------------------------------------------
 $TARGET = "http://10.11.1.181:3000/v1/session/${session_id}/connection/start"
 
+
+# $networkInterfaces = Get-NetIPAddress | Where-Object { $_.InterfaceAlias -like "*ZeroTier One*" -and $_.AddressFamily -eq "IPv4" }
+
+# # Loop through each interface and display the IPv4 address
+# foreach ($interface in $networkInterfaces) {
+#     Write-Output "Interface Alias: $($interface.InterfaceAlias)"
+#     Write-Output "IPv4 Address: $($interface.IPAddress)"
+# }
+
 # Construct ID_BODY with network_id
 $BODY = @{
     webhook = @{

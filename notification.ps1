@@ -1,4 +1,4 @@
-function Show-Notification {
+function #Show-Notification {
     param (
         [string]$message
     )
