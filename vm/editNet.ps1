@@ -29,10 +29,45 @@ $API_URL = "https://my.zerotier.com/api/network/$network_id"
 # New request body JSON with name from session_id.txt/
 $REQUEST_BODY = @{
     config = @{
+        enableBroadcast = $true
+        ipAssignmentPools = @(
+            @{
+                ipRangeStart = "10.0.0.1"
+                ipRangeEnd = "10.0.0.254"
+            }
+        )
+        mtu = 2800
+        multicastLimit = 32
+        name = $session_id  # Assigning session_id as name
         private = $false
-        name = $session_id
+        routes = @(
+            @{
+                target = "10.0.0.0/24"
+                via = $null
+            }
+        )
+        
+        v4AssignMode = @{zt = $true}
+        v6AssignMode = @{
+            "6plane" = $false
+            rfc4193 = $false
+            zt = $false
+        }
     }
+
     description = "Cloud Gaming network"
+    rulesSource = "accept;"
+    permissions = @{
+        "00000000-0000-0000-0000-000000000000" = @{
+            a = $true
+            d = $true
+            m = $true
+            r = $true
+        }
+    }
+    ownerId = "00000000-0000-0000-0000-000000000000"
+    capabilitiesByName = @{}
+    tagsByName = @{}
     } | ConvertTo-Json -Depth 10
 
 # Send HTTP Post Request to update the network
