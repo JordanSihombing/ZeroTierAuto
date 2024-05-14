@@ -32,8 +32,8 @@ $REQUEST_BODY = @{
         enableBroadcast = $true
         ipAssignmentPools = @(
             @{
-                ipRangeStart = "10.0.0.1"
-                ipRangeEnd = "10.0.0.254"
+                ipRangeStart = "192.168.10.5"
+                ipRangeEnd = "192.168.10.254"
             }
         )
         mtu = 2800
@@ -42,7 +42,7 @@ $REQUEST_BODY = @{
         private = $false
         routes = @(
             @{
-                target = "10.0.0.0/24"
+                target = "192.168.10.0/24"
                 via = $null
             }
         )
