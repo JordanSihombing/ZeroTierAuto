@@ -26,14 +26,14 @@ $API_TOKEN = "x3WCnpQ9DYjVGaeElv8C3XpKYS8M4O4y"
 # API Endpoint URL
 $API_URL = "https://my.zerotier.com/api/network/$network_id"
 
-# New request body JSON with name from session_id.txt
+# New request body JSON with name from session_id.txt/
 $REQUEST_BODY = @{
     config = @{
         enableBroadcast = $true
         ipAssignmentPools = @(
             @{
                 ipRangeStart = "10.0.0.1"
-                ipRangeEnd = "10.0.0.255"
+                ipRangeEnd = "10.0.0.254"
             }
         )
         mtu = 2800
