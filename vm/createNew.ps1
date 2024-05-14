@@ -19,7 +19,9 @@ $response = Invoke-RestMethod -Method Post `
 # Extract the ID from the response
 $network_id = $response.id
 
-Write-Host $network_id
+Write-Host $response
+
+Write-Host "Net ID:" $network_id
 
 $netFile = "network_id.txt"
 $network_id > $netFile
