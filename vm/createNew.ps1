@@ -40,6 +40,16 @@ $session_id = $response.details.SID
 $sesFile = "session_id.txt"
 $session_id > $sesFile
 
+# Set new computer name
+$NewComputerName = $session_id
+
+# Update registry values
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName" -Name "ComputerName" -Value $NewComputerName
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "Hostname" -Value $NewComputerName
+
+# Refresh environment to reflect the change without restart
+$env:COMPUTERNAME = $NewComputerName
+
 #----------------------------------------------------------------------
 $TARGET = "http://10.11.1.181:3000/v1/session/${session_id}/connection/start"
 

@@ -24,16 +24,11 @@ if (-not $session_id) {
 $API_TOKEN = "x3WCnpQ9DYjVGaeElv8C3XpKYS8M4O4y"
 
 # API Endpoint URL
-$API_URL = "https://my.zerotier.com/api/network/${network_id}"
+$API_URL = "https://my.zerotier.com/api/network/$network_id"
 
 # New request body JSON with name from session_id.txt
 $REQUEST_BODY = @{
     config = @{
-        capabilities = @{}
-        dns = @{
-            domain = "google.com"
-            servers = @("10.0.0.3")
-        }
         enableBroadcast = $true
         ipAssignmentPools = @(
             @{
@@ -51,14 +46,7 @@ $REQUEST_BODY = @{
                 via = $null
             }
         )
-        rules = @{}
-        ssoConfig = @{
-            enabled = $true
-            mode = "default"
-            clientId = "some-client-id"
-            allowList = @("string")
-        }
-        tags = @{}
+        
         v4AssignMode = @{zt = $true}
         v6AssignMode = @{
             "6plane" = $false
@@ -66,6 +54,7 @@ $REQUEST_BODY = @{
             zt = $false
         }
     }
+
     description = "Cloud Gaming network"
     rulesSource = "accept;"
     permissions = @{
@@ -79,7 +68,7 @@ $REQUEST_BODY = @{
     ownerId = "00000000-0000-0000-0000-000000000000"
     capabilitiesByName = @{}
     tagsByName = @{}
-} | ConvertTo-Json
+    } | ConvertTo-Json -Depth 10
 
 # Send HTTP Post Request to update the network
 Invoke-RestMethod -Method Post -Uri $API_URL `
@@ -88,5 +77,7 @@ Invoke-RestMethod -Method Post -Uri $API_URL `
         "Authorization" = "Bearer $API_TOKEN"
     } `
     -Body $REQUEST_BODY
+
+Write-Host $REQUEST_BODY
 
 Write-Host "Network updated successfully."
