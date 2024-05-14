@@ -68,7 +68,7 @@ $REQUEST_BODY = @{
     ownerId = "00000000-0000-0000-0000-000000000000"
     capabilitiesByName = @{}
     tagsByName = @{}
-    } | ConvertTo-Json -Depth 10
+    } | ConvertTo-Json -Depth 5
 
 # Send HTTP Post Request to update the network
 Invoke-RestMethod -Method Post -Uri $API_URL `
