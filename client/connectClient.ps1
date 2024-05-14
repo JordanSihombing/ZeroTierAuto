@@ -1,13 +1,44 @@
-# Check for admin privileges
-if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    # Restarting script with admin privileges
-    Start-Process powershell -Verb RunAs -ArgumentList ("-File", "$($MyInvocation.MyCommand.Path)")
-    exit
+param (
+        [string] $network_id
+)
+
+# Get the ID and security principal of the current user account
+$myWindowsID=[System.Security.Principal.WindowsIdentity]::GetCurrent()
+$myWindowsPrincipal=new-object System.Security.Principal.WindowsPrincipal($myWindowsID)
+
+# Get the security principal for the Administrator role
+$adminRole=[System.Security.Principal.WindowsBuiltInRole]::Administrator
+
+# Check to see if we are currently running "as Administrator"
+if ($myWindowsPrincipal.IsInRole($adminRole))
+{
+   # We are running "as Administrator" - so change the title and background color to indicate this
+   $Host.UI.RawUI.WindowTitle = $myInvocation.MyCommand.Definition + "(Elevated)"
+   $Host.UI.RawUI.BackgroundColor = "DarkBlue"
+   clear-host
+}
+else
+{
+   # We are not running "as Administrator" - so relaunch as administrator
+
+   # Create a new process object that starts PowerShell
+   $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
+
+   # Specify the current script path and name as a parameter with arguments
+   $newProcess.Arguments = "& '" + $script:MyInvocation.MyCommand.Path + "' -name " + $name;
+
+   # Indicate that the process should be elevated
+   $newProcess.Verb = "runas";
+
+   # Start the new process
+   [System.Diagnostics.Process]::Start($newProcess);
+
+   # Exit from the current, unelevated, process
+   exit
 }
 
-
-# Initiating ZeroTier connection
-Write-Host "Initiating ZeroTier connection..."
+## Initiating ZeroTier connection
+Write-Output "Initiating ZeroTier connection..."
 
 # Check for ZeroTier Desktop UI executable
 $ZerotierExe = ""
@@ -24,16 +55,12 @@ foreach ($path in $ZerotierExePaths) {
 }
 
 if ($ZerotierExe -eq "") {
-    #Show-Notification -message "ZeroTier Desktop UI not found."
+    Write-Host "ZeroTier Desktop UI not found."
     exit
 }
 
 # Initiating ZeroTier and connecting to the network
-$network_id = $args[0]
-if (-not $network_id) {
-    #Show-Notification -message "No network ID specified."
-    exit
-}
+
 
 # Starting ZeroTier Desktop UI
 Start-Process -FilePath $ZerotierExe
@@ -46,9 +73,5 @@ zerotier-cli join $network_id
 Start-Sleep -Seconds 3
 zerotier-cli status
 
-#Show-Notification -message "ZeroTier connection established!"
-
 # Closing ZeroTier Desktop UI
 Get-Process -Name zerotier_desktop_ui | Stop-Process -Force
-
-exit

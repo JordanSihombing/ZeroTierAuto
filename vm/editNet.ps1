@@ -2,7 +2,7 @@
 $outputFile = "network_id.txt"
 $network_id = Get-Content $outputFile
 
-# Check if the file was read successfully (optional)
+# Check if the file was read successfully
 if ($network_id) {
   zerotier-cli join $network_id
   Start-Sleep -Seconds 2
@@ -15,7 +15,7 @@ if ($network_id) {
 $session_id_file = "session_id.txt"
 $session_id = Get-Content $session_id_file
 
-# Check if the session ID was read successfully (optional)
+# Check if the session ID was read successfully
 if (-not $session_id) {
   Write-Error "Error: Could not read session ID from session_id.txt"
 }
@@ -61,7 +61,7 @@ $REQUEST_BODY = @{
         tags = @{}
         v4AssignMode = @{zt = $true}
         v6AssignMode = @{
-            "6plane" = $true
+            "6plane" = $false
             rfc4193 = $false
             zt = $false
         }
