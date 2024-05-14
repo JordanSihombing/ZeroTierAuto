@@ -14,7 +14,7 @@ Remove-Item -Path "$zerotierDir\identity.secret" -Force
 Start-Service -Name ZeroTierOneService
 
 .\vm\createNew.ps1 #Create new network
-.\warp\counterEduroam.ps1 #Check if network is restricted 
+.\warp\warpConnect.ps1
 Start-Sleep -Seconds 5
 .\vm\editNet.ps1 #Set network to public
 Start-Sleep -Seconds 5

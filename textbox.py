@@ -5,7 +5,7 @@ def get_input():
     print(user_input)
     with open('pinSun.txt', 'w') as file:
         file.write(user_input)
-    root.destroy()  # Close the window after getting input
+    # root.destroy()  # Close the window after getting input
     
 
 # Create the main window
