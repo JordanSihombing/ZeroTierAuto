@@ -1,3 +1,5 @@
+import os
+import subprocess
 from flask import Flask, request, jsonify, json
 import requests
 
@@ -62,6 +64,29 @@ def handle_post_pin_request():
             return {'status': 'error', 'message': str(e)}, 500
     else:
         return {'status': 'error', 'message': 'PIN not provided'}, 400
+
+@app.route('/nukethisvm', methods=['DELETE'])
+def nuke_this_vm():
+    try:
+        # Get the directory where the current script is located
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # Define the relative path to your PowerShell script
+        relative_script_path = os.path.join('controller', 'vmEnd.ps1')
+        
+        # Construct the full path to the PowerShell script
+        script_path = os.path.join(current_dir, relative_script_path)
+        
+        # Run the PowerShell script
+        result = subprocess.run(['powershell', '-File', script_path], capture_output=True, text=True)
+
+        if result.returncode != 0:
+            return jsonify({'error': 'Failed to execute the script', 'details': result.stderr}), 500
+
+        return jsonify({'message': 'Script executed successfully', 'output': result.stdout}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=2000)
