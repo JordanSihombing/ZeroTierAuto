@@ -43,6 +43,7 @@ function Test-WarpInstalled {
     foreach ($path in $warpExePaths) {
         if (Test-Path $path) {
             $warpExe = $path
+            LogProcess -Type "log" -Message "CloudFlare installed!"
             break
         }
     }
@@ -55,6 +56,7 @@ function Invoke-WarpDownload {
     $url = "https://1111-releases.cloudflareclient.com/windows/Cloudflare_WARP_Release-x64.msi"
     $outputFile = "Cloudflare_WARP_Release-x64.msi"
     Invoke-WebRequest -Uri $url -OutFile $outputFile
+    LogProcess -Type "log" -Message "CloudFlare downloading!"
 }
 
 # Function to install Cloudflare WARP
@@ -87,15 +89,16 @@ function Install-Warp {
 # Main script
 $warpCliPath = Test-WarpInstalled
 if ($warpCliPath) {
-    Write-Host "Cloudflare WARP is already installed at '$warpCliPath'."
-    warp-cli registration delete
-    warp-cli registration new
-    warp-cli connect
+    LogProcess -Type "log" -Message "Cloudflare WARP is already installed at '$warpCliPath'."
+    LogProcess -Type "run" -Message "warp-cli registration delete"
+    LogProcess -Type "run" -Message "warp-cli registration new"
+    LogProcess -Type "run" -Message "warp-cli connect"
+    LogProcess -Type "log" -Message "CloudFlare connected!"
 } else {
-    Write-Host "Cloudflare WARP is not installed. Downloading and installing..."
+    LogProcess -Type "log" -Message "Cloudflare WARP is not installed. Downloading and installing..."
     Invoke-WarpDownload
     Install-Warp
-    Write-Host "Cloudflare WARP installed successfully."
-    warp-cli register
-    warp-cli connect
+    LogProcess -Type "log" -Message "Cloudflare WARP installed successfully."
+    LogProcess -Type "run" -Message "warp-cli registration new"
+    LogProcess -Type "run" -Message "warp-cli connect"
 }
