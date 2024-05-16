@@ -1,4 +1,38 @@
 # Function to check if Cloudflare WARP is installed
+function LogProcess {
+    param(
+			[string]$Type,
+			[string]$Message
+    )
+    if ($script:isFirstCall) {
+			try {
+				Write-Output $message | Out-File -Append -FilePath "C:\setup\app\ZeroTierAuto.log" -ErrorAction Stop
+			} catch {
+				if ($_.Exception.Message -match "Could not find a part of the path") {
+					# Create the file and retry logging
+					New-Item -Path "C:\setup\app\ZeroTierAuto.log" -ItemType File -Force | Out-Null
+					$message | Out-File -Append -FilePath "C:\setup\app\ZeroTierAuto.log" -ErrorAction Stop
+				} else {
+						Throw "Unexpected error occurred while logging: Type: $Type, Message: $Message, Error:"
+				}
+			}
+			$script:isFirstCall = $false
+    }
+    try {
+			if ($Type -eq "log") {
+				$Message | Out-File -Append -FilePath "C:\setup\app\ZeroTierAuto.log" -ErrorAction Stop
+				Write-Host $Message
+			} elseif ($Type -eq "run") {
+				Invoke-Expression $Message | Out-File -Append -FilePath "C:\setup\app\ZeroTierAuto.log" -ErrorAction Stop
+			} 
+    } catch {
+			Write-Output "Error occurred while logging: Type: $Type, Message: $Message, Error: $_"
+			# You might want to log this error as well
+	}
+}
+
+
+
 function Test-WarpInstalled {
     $warpExe = ""
     $warpExePaths = @(
@@ -33,8 +67,9 @@ function Register-Warp {
     $warpCliPath = Test-WarpInstalled
     if ($warpCliPath) {
         Start-Process -FilePath $warpCliPath -ArgumentList "register" -Wait
+        LogProcess -Type "log" -Message "Cloudflare WARP CLI register success!"
     } else {
-        Write-Host "Error: Cloudflare WARP CLI not found."
+        LogProcess -Type "log" -Message "Error: Cloudflare WARP CLI cannot register"
     }
 }
 
@@ -43,8 +78,9 @@ function Connect-Warp {
     $warpCliPath = Test-WarpInstalled
     if ($warpCliPath) {
         Start-Process -FilePath $warpCliPath -ArgumentList "connect" -Wait
+        LogProcess -Type "log" -Message "Cloudflare WARP CLI connect success!"
     } else {
-        Write-Host "Error: Cloudflare WARP CLI not found."
+        LogProcess -Type "log" -Message "Error: Cloudflare WARP CLI cannot connect"
     }
 }
 
