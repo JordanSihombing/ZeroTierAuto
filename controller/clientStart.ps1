@@ -12,4 +12,4 @@ Set-Location $direc\..\
 
 .\client\runMoonlight.ps1
 
-.\client\pairSunhine.ps1 -session_id $session_id
+.\client\textbox.exe $session_id
