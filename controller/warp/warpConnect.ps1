@@ -62,39 +62,40 @@ function Install-Warp {
     Start-Process -FilePath "msiexec.exe" -ArgumentList "/i Cloudflare_WARP_Release-x64.msi /quiet" -Wait
 }
 
-# Function to register Cloudflare WARP using CLI
-function Register-Warp {
-    $warpCliPath = Test-WarpInstalled
-    if ($warpCliPath) {
-        Start-Process -FilePath $warpCliPath -ArgumentList "register" -Wait
-        LogProcess -Type "log" -Message "Cloudflare WARP CLI register success!"
-    } else {
-        LogProcess -Type "log" -Message "Error: Cloudflare WARP CLI cannot register"
-    }
-}
+# # Function to register Cloudflare WARP using CLI
+# function Register-Warp {
+#     $warpCliPath = Test-WarpInstalled
+#     if ($warpCliPath) {
+#         Start-Process -FilePath $warpCliPath -ArgumentList "register" -Wait
+#         LogProcess -Type "log" -Message "Cloudflare WARP CLI register success!"
+#     } else {
+#         LogProcess -Type "log" -Message "Error: Cloudflare WARP CLI cannot register"
+#     }
+# }
 
-# Function to connect Cloudflare WARP using CLI
-function Connect-Warp {
-    $warpCliPath = Test-WarpInstalled
-    if ($warpCliPath) {
-        Start-Process -FilePath $warpCliPath -ArgumentList "connect" -Wait
-        LogProcess -Type "log" -Message "Cloudflare WARP CLI connect success!"
-    } else {
-        LogProcess -Type "log" -Message "Error: Cloudflare WARP CLI cannot connect"
-    }
-}
+# # Function to connect Cloudflare WARP using CLI
+# function Connect-Warp {
+#     $warpCliPath = Test-WarpInstalled
+#     if ($warpCliPath) {
+#         Start-Process -FilePath $warpCliPath -ArgumentList "connect" -Wait
+#         LogProcess -Type "log" -Message "Cloudflare WARP CLI connect success!"
+#     } else {
+#         LogProcess -Type "log" -Message "Error: Cloudflare WARP CLI cannot connect"
+#     }
+# }
 
 # Main script
 $warpCliPath = Test-WarpInstalled
 if ($warpCliPath) {
     Write-Host "Cloudflare WARP is already installed at '$warpCliPath'."
-    Register-Warp
-    Connect-Warp
+    warp-cli registration delete
+    warp-cli registration new
+    warp-cli connect
 } else {
     Write-Host "Cloudflare WARP is not installed. Downloading and installing..."
     Invoke-WarpDownload
     Install-Warp
     Write-Host "Cloudflare WARP installed successfully."
-    Register-Warp
-    Connect-Warp
+    warp-cli register
+    warp-cli connect
 }
