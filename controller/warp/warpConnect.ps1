@@ -1,4 +1,6 @@
 # Function to check if Cloudflare WARP is installed
+$currentdirect = $PSScriptRoot
+
 function LogProcess {
     param(
 			[string]$Type,
@@ -6,12 +8,12 @@ function LogProcess {
     )
     if ($script:isFirstCall) {
 			try {
-				Write-Output $message | Out-File -Append -FilePath "C:\setup\app\ZeroTierAuto.log" -ErrorAction Stop
+				Write-Output $message | Out-File -Append -FilePath "$currentdirect\ZeroTierAuto.log" -ErrorAction Stop
 			} catch {
 				if ($_.Exception.Message -match "Could not find a part of the path") {
 					# Create the file and retry logging
-					New-Item -Path "C:\setup\app\ZeroTierAuto.log" -ItemType File -Force | Out-Null
-					$message | Out-File -Append -FilePath "C:\setup\app\ZeroTierAuto.log" -ErrorAction Stop
+					New-Item -Path "$currentdirect\ZeroTierAuto.log" -ItemType File -Force | Out-Null
+					$message | Out-File -Append -FilePath "$currentdirect\ZeroTierAuto.log" -ErrorAction Stop
 				} else {
 						Throw "Unexpected error occurred while logging: Type: $Type, Message: $Message, Error:"
 				}
@@ -20,10 +22,10 @@ function LogProcess {
     }
     try {
 			if ($Type -eq "log") {
-				$Message | Out-File -Append -FilePath "C:\setup\app\ZeroTierAuto.log" -ErrorAction Stop
+				$Message | Out-File -Append -FilePath "$currentdirect\ZeroTierAuto.log" -ErrorAction Stop
 				Write-Host $Message
 			} elseif ($Type -eq "run") {
-				Invoke-Expression $Message | Out-File -Append -FilePath "C:\setup\app\ZeroTierAuto.log" -ErrorAction Stop
+				Invoke-Expression $Message | Out-File -Append -FilePath "$currentdirect\ZeroTierAuto.log" -ErrorAction Stop
 			} 
     } catch {
 			Write-Output "Error occurred while logging: Type: $Type, Message: $Message, Error: $_"
