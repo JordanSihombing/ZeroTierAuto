@@ -25,6 +25,15 @@ if (Test-Path -Path $sunshineFolderPath) {
     Set-Content -Path $configFilePath -Value $jsonContent
 
     Write-Output "The config file has been created successfully at $configFilePath"
+
+    # Reset the file permissions to the default inherited permissions
+    # Get the parent directory's ACL
+    $parentDirAcl = Get-Acl -Path $configFolderPath
+
+    # Set the file's ACL to the parent directory's ACL (inherited permissions)
+    Set-Acl -Path $configFilePath -AclObject $parentDirAcl
+
+    Write-Output "The file permissions have been reset to the default inherited permissions."
 } else {
     Write-Output "The folder at path '$sunshineFolderPath' was not found."
 }
