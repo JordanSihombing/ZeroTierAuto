@@ -23,10 +23,9 @@ def pairSunshine(pin):
 
     # Send HTTP POST request
     response = requests.post(api_url, data=request_body, auth=(USERNAME, PASSWORD), verify=False)
-    print(response)  # Print status code to verify the request
+    print(response.json())  # Print status code to verify the request
     # Write the response to pinlog.txt
     return response
-
 
 @app.route('/getid', methods=['GET'])
 def handle_get_id_request():
@@ -60,7 +59,7 @@ def handle_post_pin_request():
         try:
             response = pairSunshine(pin)
             if response.status_code == 200:
-                if response.json().status == "true":
+                if response.json()["status"] == "true":
                     return {'status': 'success'}, 200
                 else:
                     return {'status': 'error', 'message': 'PIN not valid'}, 400
