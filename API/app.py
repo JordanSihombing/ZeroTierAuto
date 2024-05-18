@@ -60,9 +60,12 @@ def handle_post_pin_request():
         try:
             response = pairSunshine(pin)
             if response.status_code == 200:
-                return {'status': 'success'}, 200
+                if response.json().status == "true":
+                    return {'status': 'success'}, 200
+                else:
+                    return {'status': 'error', 'message': 'PIN not valid'}, 400
             else:
-                return {'status': 'error', 'message': 'PIN not valid'}, 400
+                return {'status': 'error', 'message': 'failed'}, 400
         except Exception as e:
             return {'status': 'error', 'message': str(e)}, 500
     else:
