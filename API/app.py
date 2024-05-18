@@ -9,6 +9,9 @@ app = Flask(__name__)
 received_pin = []
 received_id = []
 
+USERNAME = 'sunshine'
+PASSWORD = 'mysunshine'
+
 def pairSunshine(pin):
     # Define API endpoint URL
     api_url = "https://localhost:47990/api/pin"
@@ -19,7 +22,7 @@ def pairSunshine(pin):
     print(request_body)
 
     # Send HTTP POST request
-    response = requests.post(api_url, data=request_body, verify=False)
+    response = requests.post(api_url, data=request_body, auth=(USERNAME, PASSWORD), verify=False)
 
     # Output response
     return response
