@@ -26,7 +26,7 @@ def pairSunshine(pin):
 
     # Write the response to pinlog.txt
     with open("pinlog.txt", "w") as file:
-        file.write(response.text)
+        file.write(response.json())
     return response
 
 # Example usage
