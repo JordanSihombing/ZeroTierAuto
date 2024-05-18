@@ -24,8 +24,16 @@ def pairSunshine(pin):
     # Send HTTP POST request
     response = requests.post(api_url, data=request_body, auth=(USERNAME, PASSWORD), verify=False)
 
-    # Output response
+    # Write the response to pinlog.txt
+    with open("pinlog.txt", "w") as file:
+        file.write(response.text)
     return response
+
+# Example usage
+pin = '1234'
+response = pairSunshine(pin)
+print(response.status_code)  # Print status code to verify the request
+
 
 
 @app.route('/getid', methods=['GET'])
