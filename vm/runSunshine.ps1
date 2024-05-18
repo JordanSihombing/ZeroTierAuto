@@ -19,7 +19,17 @@ if (-not $SunshineExe) {
 
 Write-Host "Sunshine is installed."
 
+# Check if Sunshine is already running
+$SunshineProcess = Get-Process -Name "sunshine" -ErrorAction SilentlyContinue
+
+if ($SunshineProcess) {
+    Write-Host "Sunshine is already running. Stopping the current instance."
+    Stop-Process -Id $SunshineProcess.Id -Force
+    Start-Sleep -Seconds 2  # Give it a moment to stop completely
+}
+
 # Start Sunshine
+Write-Host "Starting Sunshine..."
 Start-Process -FilePath $SunshineExe
 
 # Wait for Sunshine to start
