@@ -27,12 +27,6 @@ def pairSunshine(pin):
     # Write the response to pinlog.txt
     return response
 
-# Example usage
-pin = '1234'
-response = pairSunshine(pin)
-print(response.status_code)  # Print status code to verify the request
-
-
 
 @app.route('/getid', methods=['GET'])
 def handle_get_id_request():
