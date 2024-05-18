@@ -23,10 +23,8 @@ def pairSunshine(pin):
 
     # Send HTTP POST request
     response = requests.post(api_url, data=request_body, auth=(USERNAME, PASSWORD), verify=False)
-
+    print(response)  # Print status code to verify the request
     # Write the response to pinlog.txt
-    with open("pinlog.txt", "w") as file:
-        file.write(response.json())
     return response
 
 # Example usage

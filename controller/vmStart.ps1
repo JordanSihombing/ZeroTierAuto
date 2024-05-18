@@ -1,4 +1,4 @@
-Start-Process -FilePath "API\dist\app.exe" -WindowStyle Hidden #start API
+Start-Process -FilePath "API\dist\app.exe" #start API
 
 # Stop the ZeroTier service
 Stop-Service -Name ZeroTierOneService
