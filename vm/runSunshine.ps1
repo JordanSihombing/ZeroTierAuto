@@ -29,6 +29,4 @@ Start-Sleep -Seconds 5
 $url = "https://localhost:47990"
 Start-Process $url
 
-
-
 exit
