@@ -4,21 +4,26 @@ import json
 import sys
 
 global session_id
-
+global token
 
 def sendPIN (pin):
     if pin:
         print(session_id)
         # Set the URL
-        URL = f"http://10.147.20.105:3000/v1/session/{session_id}/pair"
+        URL = f"http://10.11.1.181:3000/v1/session/{session_id}/pair"
 
         # Create JSON body with PIN value
         body = {
             "pin": pin
         }
 
+        headers = {
+            'Authorization': f'Bearer {token}',
+            'Content-Type': 'application/json'
+        }
+
         # Send API POST request with PIN value
-        response = requests.post(URL, json=body)
+        response = requests.post(URL, data=json.dumps(body), headers=headers)
 
         # Print the response for debugging (optional)
         print(response.status_code)
@@ -37,6 +42,7 @@ def get_input():
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         session_id = sys.argv[1]
+        token = sys.argv[2]
         # Create the main window
         root = tk.Tk()
         root.title("PIN")

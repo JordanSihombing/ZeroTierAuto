@@ -1,6 +1,7 @@
 param (
     [string]$network_id,
-    [string]$session_id
+    [string]$session_id,
+    [string]$token
 )
 
 $direc=$PSScriptRoot
@@ -12,4 +13,4 @@ Set-Location $direc\..\
 
 .\client\runMoonlight.ps1
 
-.\client\textbox.exe $session_id
+.\client\textbox.exe $session_id $token
