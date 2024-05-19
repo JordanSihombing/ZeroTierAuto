@@ -13,4 +13,4 @@ Set-Location $direc\..\
 
 .\client\runMoonlight.ps1
 
-.\client\textbox.exe $session_id $token
+.\dist\textbox.exe $session_id $token
