@@ -25,6 +25,9 @@ def sendPIN (pin):
         # Send API POST request with PIN value
         response = requests.post(URL, data=json.dumps(body), headers=headers)
 
+        with open("pinlog.txt", "w") as file:
+            file.write(response.text)
+
         # Print the response for debugging (optional)
         print(response.status_code)
         print(response.json())
