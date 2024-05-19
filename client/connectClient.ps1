@@ -75,6 +75,5 @@ zerotier-cli join $network_id
 Start-Sleep -Seconds 3
 zerotier-cli status
 
-Pause
 # Closing ZeroTier Desktop UI
 # Get-Process -Name zerotier_desktop_ui | Stop-Process -Force
