@@ -15,12 +15,12 @@ Start-Service -Name ZeroTierOneService
 
 .\vm\createNew.ps1 #Create new network
 .\controller\warp\warpConnect.ps1
-Start-Sleep -Seconds 5
+Start-Sleep -Seconds 1
 .\vm\editNet.ps1 #Set network to public
-Start-Sleep -Seconds 5
+Start-Sleep -Seconds 1
 .\vm\connectVM.ps1  #Connect to network
-Start-Sleep -Seconds 5
+Start-Sleep -Seconds 1
 .\vm\sunshineRegister.ps1
-Start-Sleep -Seconds 5
+Start-Sleep -Seconds 1
 .\vm\runSunshine.ps1 #Run sunshine 
 
