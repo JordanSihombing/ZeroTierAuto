@@ -56,7 +56,7 @@ foreach ($path in $ZerotierExePaths) {
 
 if ($ZerotierExe -eq "") {
     Write-Host "ZeroTier Desktop UI not found."
-    exit
+    & "clientRequirement\downloadZeroTier.ps1"
 }
 
 # Initiating ZeroTier and connecting to the network
