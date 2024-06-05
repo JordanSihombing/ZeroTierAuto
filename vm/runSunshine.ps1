@@ -1,19 +1,8 @@
-# Check for Sunshine installation
-$SunshineExe = ""
-$SunshineExePaths = @(
-    "${env:ProgramFiles}\Sunshine\sunshine.exe",
-    "${env:ProgramFiles(x86)}\Sunshine\sunshine.exe"
-)
+# Hardcoded path to Sunshine executable
+$SunshineExe = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sunshine\Sunshine\sunshine.exe"
 
-foreach ($path in $SunshineExePaths) {
-    if (Test-Path $path) {
-        $SunshineExe = $path
-        break
-    }
-}
-
-if (-not $SunshineExe) {
-    Write-Host "Sunshine is not installed."
+if (-not (Test-Path $SunshineExe)) {
+    Write-Host "Sunshine is not installed at the hardcoded path."
     exit
 }
 
@@ -37,9 +26,5 @@ Start-Process -FilePath $SunshineExe -NoNewWindow -Wait
 
 # Wait for Sunshine to start
 Start-Sleep -Seconds 5
-
-# Open URL in default browser
-$url = "https://localhost:47990"
-Start-Process $url
 
 exit
