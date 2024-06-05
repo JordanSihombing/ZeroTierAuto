@@ -21,6 +21,6 @@ Start-Sleep -Seconds 1
 .\vm\connectVM.ps1  #Connect to network
 Start-Sleep -Seconds 1
 .\vm\sunshineRegister.ps1
-Start-Sleep -Seconds 1
+Start-Sleep -Seconds 3
 .\vm\runSunshine.ps1 #Run sunshine 
 
