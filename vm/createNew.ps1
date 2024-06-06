@@ -34,9 +34,9 @@ $netFile = "network_id.txt"
 $network_id > $netFile
 
 #----------------------------------------------------------------------
-# Get VM IP address
-Write-Host "Getting VM IP address..."
-$IP_VM = (Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias (Get-NetAdapter | Where-Object {$_.Status -eq "Up"}).Name).IPAddress
+# Get VM IP address+
+$EthernetAdapter = Get-NetAdapter | Where-Object { $_.Status -eq "Up" -and $_.Name -eq "Ethernet" }
+$IP_VM = (Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias $EthernetAdapter.Name).IPAddress
 
 Write-Host "VM IP Address:" $IP_VM
 
