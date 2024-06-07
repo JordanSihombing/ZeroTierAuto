@@ -1,19 +1,41 @@
-.\vm\disconnectVM.ps1
-.\vm\deleteNet.ps1
+Set-Location -Path (Split-Path -Path $MyInvocation.MyCommand.Definition -Parent)
 
-$session_id = Get-Content -Path "session_id.txt"
+try {
+    & ..\vm\disconnectVM.ps1
+    Write-Host "Successfully disconnected"
+}
+catch {
+    Write-Host "Error disconnecting VM:" $_.Exception.Message
+}
+
+try {
+    & ..\vm\deleteNet.ps1
+    Write-Host "Network successfully destroyed"
+}
+catch {
+    Write-Host "Error destroying network:" $_.Exception.Message
+}
+
+Write-Host "Destroying network..."
 
 # Read session_id from session_id.txt
 $session_id = Get-Content -Path "session_id.txt"
 
 # Check if session_id is not empty
 if ($session_id -ne "") {
-    # Set the URL using the session_id from the file
     $URL = "http://10.11.1.181:6969/v1/vms/$session_id"
 
-    # Send API DELETE request without a body
-    Invoke-RestMethod -Method Delete -Uri $URL -ContentType "application/json"
-    LogProcess -Type "log" -Message "Network successfully destroyed"
+    try {
+        Invoke-RestMethod -Method Delete -Uri $URL -ContentType "application/json"
+        Write-Host "Sending Delete VM"
+        LogProcess -Type "log" -Message "VM successfully destroyed"
+    }
+    catch {
+        Write-Host "Error destroying VM via API:" $_.Exception.Message
+        LogProcess -Type "log" -Message "Error destroying VM via API: $_.Exception.Message"
+    }
 } else {
+    Write-Host "Error: No session_id value provided in session_id.txt."
     LogProcess -Type "log" -Message "Error: No session_id value provided in session_id.txt."
 }
+
