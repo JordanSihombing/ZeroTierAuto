@@ -1,3 +1,5 @@
+ipconfig /renew *Eth*
+
 Start-Process -FilePath "API\dist\app.exe" #start API
 
 # Stop the ZeroTier service

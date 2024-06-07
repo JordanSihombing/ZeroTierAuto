@@ -73,14 +73,8 @@ def handle_post_pin_request():
 @app.route('/nukethisvm', methods=['DELETE'])
 def nuke_this_vm():
     try:
-        # Get the directory where the current script is located
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        
-        # Define the relative path to your PowerShell script
-        relative_script_path = os.path.join('controller', 'vmEnd.ps1')
-        
-        # Construct the full path to the PowerShell script
-        script_path = os.path.join(current_dir, relative_script_path)
+        # Define the static path to the PowerShell script
+        script_path = r'C:\setup\scripts\ZeroTierAuto\controller\vmEnd.ps1'
         
         # Run the PowerShell script
         result = subprocess.run(['powershell', '-File', script_path], capture_output=True, text=True)
