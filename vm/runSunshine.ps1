@@ -2,20 +2,11 @@
 $SunshineExe = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sunshine\Sunshine\sunshine.exe"
 
 if (-not (Test-Path $SunshineExe)) {
-    Write-Host "Sunshine is not installed at the hardcoded path."
+    Write-Host "Sunshine is not installed."
     exit
 }
 
 Write-Host "Sunshine is installed."
-
-# Check if Sunshine is already running
-$SunshineProcess = Get-Process -Name "sunshinesvc" -ErrorAction SilentlyContinue
-
-if ($SunshineProcess) {
-    Write-Host "Sunshine is already running. Stopping the current instance."
-    Stop-Process -Id $SunshineProcess.Id -Force
-    Start-Sleep -Seconds 2  # Give it a moment to stop completely
-}
 
 # Start Sunshine
 $workingDirectory = Split-Path -Path $SunshineExe -Parent
