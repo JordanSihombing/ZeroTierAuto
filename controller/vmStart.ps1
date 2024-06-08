@@ -11,6 +11,8 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 
 ipconfig /renew *Eth*
 
+Set-Location C:\setup\scripts\ZeroTierAuto
+
 Start-Process -FilePath "API\dist\app.exe" #start API
 
 # Stop the ZeroTier service
