@@ -8,6 +8,17 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     exit
 }
 
+# Get all processes related to "sunshine"
+$processes = Get-Process | Where-Object { $_.ProcessName -like "*sunshine*" }
+
+# Stop each process
+foreach ($process in $processes) {
+    Write-Host "Stopping process: $($process.ProcessName) with ID $($process.Id)..."
+    Stop-Process -Id $process.Id -Force
+}
+
+Write-Host "All processes related to 'sunshine' have been stopped."
+
 
 ipconfig /renew *Eth*
 
