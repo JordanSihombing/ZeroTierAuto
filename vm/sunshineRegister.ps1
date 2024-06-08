@@ -49,27 +49,27 @@ if (Test-Path -Path $sunshineFolderPath) {
 }
 
 # Define the URL and the path to the session ID file--------------------------------------------
-$sessionIdFile = "session_id.txt"
+# $sessionIdFile = "session_id.txt"
 
-# Read the session ID from the file
-$sessionId = Get-Content -Path $sessionIdFile -Raw
+# # Read the session ID from the file
+# $sessionId = Get-Content -Path $sessionIdFile -Raw
 
-# Construct the full URL
-$url = "http://10.11.1.181:3000/v1/session/$sessionId/status"
+# # Construct the full URL
+# $url = "http://10.11.1.181:3000/v1/session/$sessionId/status"
 
-# Send the GET request
-$response = Invoke-RestMethod -Uri $url -Method Get
+# # Send the GET request
+# $response = Invoke-RestMethod -Uri $url -Method Get
 
-# Extract the username from the response
-$username = $response.username
+# # Extract the username from the response
+# $username = $response.username
 
-# Output the username
-Write-Output "Username: $username"
+# # Output the username
+# Write-Output "Username: $username"
 
-# Write the username to the sunshine_config.conf file
-$configOutputContent = "sunshine_name = $username"
-Set-Content -Path $configOutputFilePath -Value $configOutputContent
+# # Write the username to the sunshine_config.conf file
+# $configOutputContent = "sunshine_name = $username"
+# Set-Content -Path $configOutputFilePath -Value $configOutputContent
 
-Write-Output "The username has been written to $configOutputFilePath"
+# Write-Output "The username has been written to $configOutputFilePath"
 
 #Read-Host -Prompt "Press Enter to exit"
