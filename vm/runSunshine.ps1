@@ -1,7 +1,8 @@
 # Hardcoded path to Sunshine executable
+$SunshineCheck = "C:\Program Files\Sunshine\sunshine.exe"
 $SunshineExe = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sunshine\sunshine.exe"
 
-if (-not (Test-Path $SunshineExe)) {
+if (-not (Test-Path $SunshineCheck)) {
     Write-Host "Sunshine is not installed."
     exit
 }
