@@ -93,13 +93,14 @@ Write-Host "Session ID:" $session_id
 Write-Host "Sending HTTP POST Request to start connection..."
 
 # Log and Send HTTP POST Request to start connection
-$response = Invoke-RestMethod -Method Post `
-    -Uri $TARGET `
-    -ContentType "application/json" `
-    -Body $BODY
+try {
+    $response = Invoke-RestMethod -Method Post -Uri $TARGET -ContentType "application/json" -Body $BODY
+    Write-Host "Response received:"
+    Write-Host $response
+} catch {
+    Write-Host "Error occurred: $_"
+}
 
-Write-Host "Response received:"
-Write-Host $response
 
 # Check if the response is successful (status code 200)
 if ($response.status -eq "success") {
