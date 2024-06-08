@@ -1,3 +1,14 @@
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
+{
+    # If not running as administrator, restart the script as administrator
+    $newProcess = New-Object System.Diagnostics.ProcessStartInfo "PowerShell"
+    $newProcess.Arguments = "& '" + $script:MyInvocation.MyCommand.Definition + "'"
+    $newProcess.Verb = "runas"
+    [System.Diagnostics.Process]::Start($newProcess) | Out-Null
+    exit
+}
+
+
 Set-Location -Path (Split-Path -Path $MyInvocation.MyCommand.Definition -Parent)
 
 try {

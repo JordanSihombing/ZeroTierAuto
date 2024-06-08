@@ -2,6 +2,16 @@
 $logFile = "logging.txt"
 Start-Transcript -Path $logFile
 
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
+{
+    # If not running as administrator, restart the script as administrator
+    $newProcess = New-Object System.Diagnostics.ProcessStartInfo "PowerShell"
+    $newProcess.Arguments = "& '" + $script:MyInvocation.MyCommand.Definition + "'"
+    $newProcess.Verb = "runas"
+    [System.Diagnostics.Process]::Start($newProcess) | Out-Null
+    exit
+}
+
 # API Token
 $API_TOKEN = "x3WCnpQ9DYjVGaeElv8C3XpKYS8M4O4y"
 
