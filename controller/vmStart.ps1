@@ -50,5 +50,5 @@ Start-Sleep -Seconds 1
 Start-Sleep -Seconds 3
 .\vm\runSunshine.ps1 #Run sunshine 
 
-DisplaySwitch 4
+# DisplaySwitch 4
 Set-DisplayResolution -Width 3840 -Height 2160 -Frequency 144
