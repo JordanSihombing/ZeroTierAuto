@@ -50,4 +50,4 @@ if ($session_id -ne "") {
     LogProcess -Type "log" -Message "Error: No session_id value provided in session_id.txt."
 }
 
-# DisplaySwitch 3
+DisplaySwitch 3
