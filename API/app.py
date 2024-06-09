@@ -75,7 +75,15 @@ def nuke_this_vm():
     try:
         # Define the static path to the PowerShell script
         script_path = r'C:\setup\scripts\ZeroTierAuto\controller\vmEnd.ps1'
-        
+
+        # Command to set execution policy to RemoteSigned
+        set_policy_command = ['powershell', '-Command', 'Set-ExecutionPolicy RemoteSigned -Scope Process -Force']
+
+        # Run the command to change the execution policy
+        policy_result = subprocess.run(set_policy_command, capture_output=True, text=True)
+        if policy_result.returncode != 0:
+            return jsonify({'error': 'Failed to set execution policy', 'details': policy_result.stderr}), 500
+
         # Run the PowerShell script
         result = subprocess.run(['powershell', '-File', script_path], capture_output=True, text=True)
 
