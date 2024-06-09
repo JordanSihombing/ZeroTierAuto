@@ -1,5 +1,5 @@
 ('C:\\Users\\Jordan\\OneDrive\\Documents\\Kuliah Smt 8\\TA '
- '2\\update\\ZeroTierAuto\\API\\build\\app\\PYZ-00.pyz',
+ '2\\update\\ZeroTierAuto\\APi\\build\\app\\PYZ-00.pyz',
  [('__future__',
    'C:\\Users\\Jordan\\AppData\\Local\\Programs\\Python\\Python38-32\\lib\\__future__.py',
    'PYMODULE'),
