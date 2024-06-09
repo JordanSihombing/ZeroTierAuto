@@ -1,6 +1,5 @@
-# Hardcoded path to Sunshine executable
 $SunshineCheck = "C:\Program Files\Sunshine\sunshine.exe"
-$SunshineExe = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sunshine\sunshine.exe"
+$SunshinePath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sunshine\sunshine.lnk"
 
 if (-not (Test-Path $SunshineCheck)) {
     Write-Host "Sunshine is not installed."
@@ -9,14 +8,18 @@ if (-not (Test-Path $SunshineCheck)) {
 
 Write-Host "Sunshine is installed."
 
-# Start Sunshine
-$workingDirectory = Split-Path -Path $SunshineExe -Parent
-Write-Host "Setting working directory to $workingDirectory"
-Set-Location -Path $workingDirectory
-Write-Host "Starting Sunshine..."
-Start-Process -FilePath $SunshineExe -NoNewWindow -Wait
+#start Sunshine
+$workDir =Split-Path -Path $SunshinePath -Parent
+Write-Host "Setting working directory to $workDir"
+Set-Location -Path $workDir
 
-# Wait for Sunshine to start
+$shell =  New-Object -ComObject WScript.Shell
+
+$Shortcut = $shell.CreateShortcut($SunshinePath)
+$TargetPath = $Shortcut.$TargetPath
+
+Start-Process -FilePath $TargetPath -NoNewWindow -Wait
+
 Start-Sleep -Seconds 5
 
 exit
