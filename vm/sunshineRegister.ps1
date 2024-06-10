@@ -1,6 +1,5 @@
 # Define the static path to the Sunshine folder
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
-{
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     # If not running as administrator, restart the script as administrator
     $newProcess = New-Object System.Diagnostics.ProcessStartInfo "PowerShell"
     $newProcess.Arguments = "& '" + $script:MyInvocation.MyCommand.Definition + "'"
@@ -48,28 +47,22 @@ if (Test-Path -Path $sunshineFolderPath) {
     Write-Output "The folder at path '$sunshineFolderPath' was not found."
 }
 
-# Define the URL and the path to the session ID file--------------------------------------------
-# $sessionIdFile = "session_id.txt"
+# Define the path to the username file
+$usernameFile = "username.txt"
 
-# # Read the session ID from the file
-# $sessionId = Get-Content -Path $sessionIdFile -Raw
+# Read the username from the file
+$username = Get-Content -Path $usernameFile -Raw
 
-# # Construct the full URL
-# $url = "http://10.11.1.181:3000/v1/session/$sessionId/status"
+# Output the username
+Write-Output "Username: $username"
 
-# # Send the GET request
-# $response = Invoke-RestMethod -Uri $url -Method Get
+# Define the path to the output configuration file
+$configOutputFilePath = Join-Path -Path $sunshineFolderPath -ChildPath "sunshine_config.conf"
 
-# # Extract the username from the response
-# $username = $response.username
+# Write the username to the sunshine_config.conf file
+$configOutputContent = "sunshine_name = $username"
+Set-Content -Path $configOutputFilePath -Value $configOutputContent
 
-# # Output the username
-# Write-Output "Username: $username"
+Write-Output "The username has been written to $configOutputFilePath"
 
-# # Write the username to the sunshine_config.conf file
-# $configOutputContent = "sunshine_name = $username"
-# Set-Content -Path $configOutputFilePath -Value $configOutputContent
-
-# Write-Output "The username has been written to $configOutputFilePath"
-
-#Read-Host -Prompt "Press Enter to exit"
+Read-Host -Prompt "Press Enter to exit"
