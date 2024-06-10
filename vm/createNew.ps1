@@ -65,14 +65,14 @@ Write-Host $response
 $sesFile = "session_id.txt"
 $session_id > $sesFile
 
-# Extract SID from response
+# Extract username from response
 $username = $response.details.username
 
 $usernameFile = "username.txt"
 $username > $usernameFile
 
 # Set new computer name
-$NewComputerName = $session_id
+$NewComputerName = $username
 
 Write-Host "Setting new computer name to $NewComputerName..."
 

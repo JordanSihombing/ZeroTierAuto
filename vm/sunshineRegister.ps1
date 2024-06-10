@@ -65,4 +65,4 @@ Set-Content -Path $configOutputFilePath -Value $configOutputContent
 
 Write-Output "The username has been written to $configOutputFilePath"
 
-Read-Host -Prompt "Press Enter to exit"
+# Read-Host -Prompt "Press Enter to exit"
