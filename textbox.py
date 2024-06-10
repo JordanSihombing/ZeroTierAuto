@@ -2,29 +2,16 @@ import tkinter as tk
 import requests
 import json
 import sys
-import subprocess
+
 
 global session_id
 global token
 
-def ping(host):
-    try:
-        output = subprocess.check_output(["ping", "-c", "1", host])
-        return True
-    except subprocess.CalledProcessError:
-        return False
-
 def sendPIN(pin):
     if pin:
         print(session_id)
-        # Ping destinations and set URL
-        if ping("10.11.1.181"):
-            URL = f"http://10.11.1.181:3000/v1/session/{session_id}/pair"
-        elif ping("10.147.20.105"):
-            URL = f"http://10.147.20.105:3000/v1/session/{session_id}/pair"
-        else:
-            print("Error: No destination is reachable.")
-            return
+        # Set the URL
+        URL = f"http://10.11.1.181:3000/v1/session/{session_id}/pair"
 
         # Create JSON body with PIN value
         body = {
@@ -78,4 +65,4 @@ if __name__ == "__main__":
         # Run the main event loop
         root.mainloop()
     else:
-        exit("No session ID provided")
+        sys.exit("No session ID provided")
