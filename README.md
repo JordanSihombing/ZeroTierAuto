@@ -25,15 +25,9 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and commands/functions using scri
 | editNet.ps1   | .\vm\editNet.ps1  |  |
 | runSunshine.ps1   | .\vm\runSunshine.ps1    |    |
 | runApp.ps1   | .\vm\runApp.ps1  |  |
-| stopApp.ps1   | .\vm\runApp.ps1   |   |
+| stopApp.ps1   | .\vm\stopApp.ps1   |   |
+| sunshineRegister.ps1   | .\vm\sunshineRegister.ps1   |   |
 
-### Warp
-
-| Name | Usage | Note |
-|----------|----------|----------|
-| counterEduroam.ps1   | .\warp\counterEduroam.ps1 | to check wheter the network is available for ZeroTier  |
-| warpConnect.ps1    | .\warp\warpConnect.ps1  |    |
-| warpDisconnect.ps1   | .\warp\warpDisconnect.ps1 |  |
 
 ### Controller
 
@@ -44,7 +38,13 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and commands/functions using scri
 | vmEnd.ps1   | .\controller\vmEnd.ps1  |  |
 | vmStart.ps1  | .\controller\vmStart.ps1  |    |
 
-## Main Flow of Process
+### Warp
+
+| Name | Usage | Note |
+|----------|----------|----------|
+| warpConnect.ps1    | .\controller\warp\warpConnect.ps1  |    |
+| warpDisconnect.ps1   | .\controller\warp\warpDisconnect.ps1 |  |
+
 
 ### Using Controller
 `clientStart.ps1`  → trigger on client if there is new session request <br />
@@ -53,4 +53,4 @@ Executing ZeroTier, Sunshine, Cloudflare WARP, and commands/functions using scri
 `vmEnd.ps1`        → trigger on VM if there is end session request <br />
 
 >[!NOTE]
-> session_id and network_id is a passing parameter on client side<br />
+> session_id and network_id are a passing parameter on client side<br />
