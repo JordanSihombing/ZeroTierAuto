@@ -60,11 +60,8 @@ This script controls ZeroTier, Moonlight, Sunshine, and Cloudflare WARP for game
 | warpDisconnect.ps1   | .\controller\warp\warpDisconnect.ps1 |  |
 
 
-### Using Controller
+## Using Controller
 `clientStart.ps1`  → trigger on client if there is new session request <br />
 `clientEnd.ps1`    → trigger on client if there is end session request <br />
 `vmStart.ps1`      → trigger on VM if there is new session request <br />
 `vmEnd.ps1`        → trigger on VM if there is end session request <br />
-
->[!NOTE]
-> session_id and network_id are a passing parameter on client side<br />
