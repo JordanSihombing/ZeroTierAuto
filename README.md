@@ -1,7 +1,18 @@
 # ZeroTier Configuration Automation
 
-## Usage
-Executing ZeroTier, Sunshine, Cloudflare WARP, and commands/functions using script
+## Dependency
+This script controls ZeroTier, Moonlight, Sunshine, and Cloudflare WARP for gamestream purposes.
+Client act as the user and VM as the host
+
+### Client-side
+[ZeroTier] (https://www.zerotier.com/download/) 
+[Moonlight] (https://github.com/moonlight-stream/moonlight-qt/releases)
+[Clouflare WARP] (https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/)
+
+### VM-side
+[ZeroTier] (https://www.zerotier.com/download/) 
+[Sunshine] (https://github.com/LizardByte/Sunshine/releases/tag/v0.18.4)
+[Clouflare WARP] (https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/)
 
 ## Description
 
