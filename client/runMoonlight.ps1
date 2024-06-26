@@ -13,7 +13,6 @@ foreach ($path in $MoonlightExePaths) {
 }
 
 if ($MoonlightExe -eq "") {
-    #Show-Notification -message "Moonlight is not installed."
     .\clientRequirement\downloadMoonlight.ps1
 }
 

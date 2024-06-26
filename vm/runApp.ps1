@@ -1,4 +1,4 @@
-# Define the path to your executable
+# Define the path to executable
 $app_exe = ".\API\dist\app.exe"
 
 # Execute the executable

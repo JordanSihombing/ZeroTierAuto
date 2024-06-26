@@ -1,5 +1,3 @@
-# PowerShell equivalent of the provided batch script
-
 # Check for admin privileges
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     # Restarting script with admin privileges
@@ -31,7 +29,6 @@ if (-not $ZerotierExe) {
 
 $network_id = $args[0]
 if (-not $network_id) {
-    #Show-Notification -message "No network ID specified."
     exit
 }
 
@@ -41,9 +38,7 @@ Start-Sleep -Seconds 5
 zerotier-cli leave $network_id
 Start-Sleep -Seconds 3
 zerotier-cli status
-#Show-Notification -message "ZeroTier connection terminated!"
 
-# Closing ZeroTier Desktop UI
 Get-Process -Name zerotier_desktop_ui | Stop-Process -Force
 
 exit

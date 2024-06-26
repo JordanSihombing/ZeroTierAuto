@@ -115,5 +115,4 @@ if ($response.status -eq "success") {
     Write-Host "Error: Failed to start connection. Status code: $($response.StatusCode)"
 }
 
-# End the transcript
 Stop-Transcript

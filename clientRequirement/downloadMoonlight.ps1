@@ -1,13 +1,13 @@
-# Define the URL of the file to download
+# Define the URL 
 $url = "https://github.com/moonlight-stream/moonlight-qt/releases/download/v5.0.1/MoonlightSetup-5.0.1.exe"
 
-# Define the path where you want to save the downloaded file
+# Define the path 
 $outputPath = "$env:USERPROFILE\Downloads\MoonlightSetup-5.0.1.exe"
 
 # Download the file
 Invoke-WebRequest -Uri $url -OutFile $outputPath
 
-# arguments for silent installation 
+# silent installation 
 $arguments = "/S"
 
 # Start the installation process

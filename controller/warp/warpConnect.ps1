@@ -1,4 +1,3 @@
-# Function to check if Cloudflare WARP is installed
 $currentdirect = $PSScriptRoot
 
 function LogProcess {
@@ -65,28 +64,6 @@ function Invoke-WarpDownload {
 function Install-Warp {
     Start-Process -FilePath "msiexec.exe" -ArgumentList "/i Cloudflare_WARP_Release-x64.msi /quiet" -Wait
 }
-
-# # Function to register Cloudflare WARP using CLI
-# function Register-Warp {
-#     $warpCliPath = Test-WarpInstalled
-#     if ($warpCliPath) {
-#         Start-Process -FilePath $warpCliPath -ArgumentList "register" -Wait
-#         LogProcess -Type "log" -Message "Cloudflare WARP CLI register success!"
-#     } else {
-#         LogProcess -Type "log" -Message "Error: Cloudflare WARP CLI cannot register"
-#     }
-# }
-
-# # Function to connect Cloudflare WARP using CLI
-# function Connect-Warp {
-#     $warpCliPath = Test-WarpInstalled
-#     if ($warpCliPath) {
-#         Start-Process -FilePath $warpCliPath -ArgumentList "connect" -Wait
-#         LogProcess -Type "log" -Message "Cloudflare WARP CLI connect success!"
-#     } else {
-#         LogProcess -Type "log" -Message "Error: Cloudflare WARP CLI cannot connect"
-#     }
-# }
 
 # Main script
 $warpCliPath = Test-WarpInstalled

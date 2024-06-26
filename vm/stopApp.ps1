@@ -1,4 +1,4 @@
-# Define the name of the Python process running your Flask application
+# Define the name of the Flask application
 $processName = "python"
 
 # Get the PID of the Python process running your Flask application

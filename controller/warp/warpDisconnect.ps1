@@ -1,4 +1,3 @@
-# Function to check if Cloudflare WARP is installed
 function Test-WarpInstalled {
     $warpExe = ""
     $warpExePaths = @(

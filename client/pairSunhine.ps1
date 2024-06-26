@@ -10,8 +10,6 @@ Start-Process -FilePath "textbox.exe" -Wait
 
 $pin =Get-Content pinSun.txt
 
-# Extract only numbers using regular expressions
-# $pin = $pin -replace '[^\d]', ''
 
 Write-Output "User input (PIN): $pin"
 
@@ -29,5 +27,5 @@ if ($pin -ne "") {
     # Send API POST request with PIN value
     Invoke-RestMethod -Method Post -Uri $URL -ContentType "application/json" -Body $body
 } else {
-    #Show-Notification -message "Error: No PIN value provided."
+
 }
